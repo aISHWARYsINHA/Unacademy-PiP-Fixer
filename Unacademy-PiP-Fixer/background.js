@@ -1,31 +1,34 @@
 // Listen for the user to click the extension icon
 chrome.action.onClicked.addListener((tab) => {
-  // Inject the function into the page AND any iframes (player.uacdn.net)
+  runPiPFix(tab);
+});
+
+// Listen for the Alt+C command
+chrome.commands.onCommand.addListener((command, tab) => {
+  if (command === "_execute_action") {
+    runPiPFix(tab);
+  }
+});
+
+// Helper function to execute the script
+function runPiPFix(tab) {
   chrome.scripting.executeScript({
     target: { tabId: tab.id, allFrames: true },
     func: triggerPiP
   });
-});
+}
 
 // The function that runs inside the actual webpage/iframe
 function triggerPiP() {
-  // 1. Find the specific container box
   const cameraContainer = document.querySelector('div[class*="RectangleCamera__CameraContainer"]');
-  
-  // 2. Find the video INSIDE that specific container
   const video = cameraContainer ? cameraContainer.querySelector('video') : null;
 
   if (video) {
-    // Hide the original container so it stops getting in the way
     cameraContainer.style.display = 'none';
-
-    // Strip away Unacademy's PiP blocker
     video.removeAttribute('disablePictureInPicture');
-
-    // Force it into Picture-in-Picture
     video.requestPictureInPicture().catch(err => {
       console.error("PiP failed to launch:", err);
-      alert("Please click anywhere on the video player first, then click the extension icon again.");
+      alert("Please click anywhere on the video player first to focus the page, then try Alt+C again.");
     });
   }
 }
