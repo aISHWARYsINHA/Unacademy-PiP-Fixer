@@ -23,7 +23,7 @@ The extension is now installed and should appear in your Chrome toolbar! (You ma
 
 1. Open an Unacademy live class or recorded lesson.
 2. **Important:** Click anywhere on the webpage at least once. (Modern browsers require a "user gesture" before allowing PiP to trigger).
-3. Click the **Unacademy PiP Fixer** icon in your toolbar or just activate/deactivate Picture-in-Picture mode using **Alt + C** (Windows/Linux) or **Command + Shift + C** (Mac)..
+3. Click the **Unacademy PiP Fixer** icon in your toolbar or just activate/deactivate Picture-in-Picture mode using **Alt + C** (Windows/Linux) or **Command + Shift + C** (Mac).
 4. The educator's camera will instantly pop out into a floating window. You can now resize it and drag it anywhere on your screen.
 
 ## 🧠 How It Works
